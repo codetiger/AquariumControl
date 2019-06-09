@@ -18,7 +18,7 @@ controls = dict()
 controlNames = dict()
 for setting in data:
         if setting["port"] not in controls:
-                controls[setting["port"]] = gpiozero.OutputDevice(setting["port"], active_high=False, initial_value=False)
+                controls[setting["port"]] = gpiozero.OutputDevice(setting["port"], active_high=True, initial_value=False)
                 controlNames[setting["port"]] = setting["name"]
 
 while True:
