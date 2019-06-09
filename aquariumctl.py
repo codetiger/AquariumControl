@@ -24,7 +24,10 @@ for setting in data:
 while True:
         controlStates = dict()
         for setting in data:
-                controlStates[setting["port"]] = controlStates[setting["port"]] or isTimeBetween(setting["startTime"], setting["endTime"])
+                if setting["port"] in controlStates:
+                        controlStates[setting["port"]] = controlStates[setting["port"]] or isTimeBetween(setting["startTime"], setting["endTime"])
+                else:
+                        controlStates[setting["port"]] = isTimeBetween(setting["startTime"], setting["endTime"])
 
         for port, value in controlStates.iteritems():
                 if value:
