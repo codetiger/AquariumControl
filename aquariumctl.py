@@ -31,10 +31,10 @@ while True:
         for port, value in controlStates.iteritems():
                 if value:
                         print("Switching ON the control " + controlNames[port])
-                        controls[setting["port"]].on()
+                        controls[port].on()
                 else:
                         print("Switching OFF the control " + controlNames[port])
-                        controls[setting["port"]].off()
+                        controls[port].off()
 
         print("Sleeping for few seconds...\n")
         time.sleep(10)
