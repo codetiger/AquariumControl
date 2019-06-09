@@ -1,6 +1,7 @@
 import gpiozero
 from datetime import datetime
 import json
+import time 
 
 def isTimeBetween(startTime, endTime):
         timeNow = datetime.now().time()
@@ -34,4 +35,4 @@ while True:
                         controls[setting["port"]].off()
 
         print("Sleeping for few seconds...\n")
-        sleep(10)
+        time.sleep(10)
