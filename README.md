@@ -25,7 +25,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python /home/pi/Documents/aquariumctl.py
+WorkingDirectory=/home/pi/Documents/AquariumControl/ExecStart=/usr/bin/python aquariumctl.py
 Restart=on-abort
 
 [Install]

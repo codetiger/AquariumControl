@@ -20,14 +20,18 @@ for setting in data:
                 controls[setting["port"]] = gpiozero.OutputDevice(setting["port"], active_high=True, initial_value=False)
                 controlNames[setting["port"]] = setting["name"]
 
-controlStates = dict()
-for setting in data:
-        controlStates[setting["port"]] = isTimeBetween(setting["startTime"], setting["endTime"])
+while True:
+        controlStates = dict()
+        for setting in data:
+                controlStates[setting["port"]] = isTimeBetween(setting["startTime"], setting["endTime"])
 
-for port, value in controlStates.iteritems():
-        if value:
-                print("Switching ON the control " + controlNames[port])
-                controls[setting["port"]].on()
-        else:
-                print("Switching OFF the control " + controlNames[port])
-                controls[setting["port"]].off()
+        for port, value in controlStates.iteritems():
+                if value:
+                        print("Switching ON the control " + controlNames[port])
+                        controls[setting["port"]].on()
+                else:
+                        print("Switching OFF the control " + controlNames[port])
+                        controls[setting["port"]].off()
+
+        print("Sleeping for few seconds...\n")
+        sleep(10)
