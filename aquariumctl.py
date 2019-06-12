@@ -1,40 +1,41 @@
-import gpiozero
-from datetime import datetime
+import helper
+
+# Use Mock pins while running in Mac OS
+helper.checkSimulate()
+
+# Load the configuration data
 import json
-import time 
-
-def isTimeBetween(startTime, endTime):
-        timeNow = datetime.now().time()
-        if timeNow >= datetime.strptime(startTime, '%H:%M:%S').time() and timeNow <= datetime.strptime(endTime, '%H:%M:%S').time():
-                return True
-        else:
-                return False
-
 print("Loading & Initialising GPIO controls from config file...")
 with open('config.json') as f:
-  data = json.load(f)
+        data = json.load(f)
 
+
+# Building all GPIOZero controls using configuration loaded from config file
+import gpiozero
 controls = dict()
-controlNames = dict()
-for setting in data:
+for setting in data["controls"]:
         if setting["port"] not in controls:
-                controls[setting["port"]] = gpiozero.DigitalOutputDevice(setting["port"], active_high=setting["activeHigh"], initial_value=False)
-                controlNames[setting["port"]] = setting["name"]
+                controls[setting["port"]] = gpiozero.DigitalOutputDevice(setting["port"], active_high=setting["activeHigh"], initial_value=False), setting["name"]
 
+# Main loop to keep the application alive. 
+import time 
 while True:
         controlStates = dict()
-        for setting in data:
+        for setting in data["controls"]:
                 if setting["port"] not in controlStates:
                         controlStates[setting["port"]] = False
-                controlStates[setting["port"]] = controlStates[setting["port"]] or isTimeBetween(setting["startTime"], setting["endTime"])
+                controlStates[setting["port"]] = controlStates[setting["port"]] or helper.isTimeBetween(setting["startTime"], setting["endTime"])
 
         for port, value in controlStates.iteritems():
+                control, name = controls[port]
                 if value:
-                        print("Switching ON the control " + controlNames[port])
-                        controls[port].on()
+                        print("Switching ON the control " + name)
+                        control.on()
                 else:
-                        print("Switching OFF the control " + controlNames[port])
-                        controls[port].off()
+                        print("Switching OFF the control " + name)
+                        control.off()
+
+        helper.checkUpdates()
 
         print("Sleeping for few seconds...\n")
         time.sleep(10)
