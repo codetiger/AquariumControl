@@ -34,7 +34,7 @@ def checkUpdates():
         print("Checking for updated code in git")
         output = subprocess.check_output(["git", "pull"])
         # print("git output: " + output)
-        if output != "Already up to date.\n":
+        if output != "Already up-to-date.\n":
                 print("Restarting the application...")
                 restartProgram()
         print("Completing code update")
