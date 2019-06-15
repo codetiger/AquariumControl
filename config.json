@@ -1,5 +1,4 @@
 {
-    "updatetime" : ["06:00:00", "12:00:00", "18:00:00"],
     "controls" : [
         {
             "name" : "co2Flow",
@@ -49,6 +48,21 @@
             "activeHigh" : false,
             "startTime" : "00:00:00",
             "endTime" : "23:59:59"
+        },
+        {
+            "name" : "fishFeeder",
+            "port" : 18,
+            "activeHigh" : false,
+            "startTime" : "07:15:00",
+            "endTime" : "07:18:00"
+        },
+        {
+            "name" : "fishFeeder",
+            "port" : 18,
+            "activeHigh" : false,
+            "startTime" : "16:15:00",
+            "endTime" : "16:18:00"
         }
+
     ]
 }
