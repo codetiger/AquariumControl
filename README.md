@@ -21,7 +21,8 @@ and paste the content below.
 ```
 [Unit]
 Description=Aquarium Control
-After=multi-user.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple

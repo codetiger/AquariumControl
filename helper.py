@@ -14,6 +14,15 @@ def isTimeBetween(startTime, endTime):
         return (timeNow >= datetime.strptime(startTime, '%H:%M:%S').time() and timeNow <= datetime.strptime(endTime, '%H:%M:%S').time())
 
 
+# Check internet connection
+import urllib2
+def hasInternetConnection():
+    try:
+        urllib2.urlopen('http://www.google.com', timeout=10)
+        return True
+    except urllib2.URLError as err: 
+        return False
+
 # Restarts the current program
 import os, sys, psutil, logging
 def restartProgram():
@@ -32,10 +41,14 @@ def restartProgram():
 import subprocess
 def checkUpdates():
         print("Checking for updated code in git")
-        output = subprocess.check_output(["git", "pull"])
-        # print("git output: " + output)
-        if output != "Already up-to-date.\n":
-                print("Restarting the application...")
-                restartProgram()
-        print("Completing code update")
+        if hasInternetConnection():
+                output = subprocess.check_output(["git", "pull"])
+                # print("git output: " + output)
+                output = output.replace("-", " ")
+                if output != "Already up to date.\n":
+                        print("Restarting the application...\n")
+                        restartProgram()
+                print("Completing code update")
+        else:
+                print("No internet connection")
 
