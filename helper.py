@@ -42,13 +42,16 @@ import subprocess
 def checkUpdates():
         print("Checking for updated code in git")
         if hasInternetConnection():
-                output = subprocess.check_output(["git", "pull"])
-                # print("git output: " + output)
-                output = output.replace("-", " ")
-                if output != "Already up to date.\n":
-                        print("Restarting the application...\n")
-                        restartProgram()
-                print("Completing code update")
+                try:
+                        output = subprocess.check_output(["git", "pull"])
+                        # print("git output: " + output)
+                        output = output.replace("-", " ")
+                        if output != "Already up to date.\n":
+                                print("Restarting the application...\n")
+                                restartProgram()
+                        print("Completing code update")                        
+                except:
+                        pass
         else:
                 print("No internet connection")
 

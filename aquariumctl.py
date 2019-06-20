@@ -38,4 +38,4 @@ while True:
         helper.checkUpdates()
 
         print("Sleeping for few seconds...\n")
-        time.sleep(10)
+        time.sleep(30)
