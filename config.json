@@ -12,7 +12,7 @@
             "port" : 17,
             "activeHigh" : false,
             "startTime" : "08:00:00",
-            "endTime" : "11:00:00"
+            "endTime" : "09:30:00"
         },
         {
             "name" : "co2Flow",
@@ -26,7 +26,7 @@
             "port" : 17,
             "activeHigh" : false,
             "startTime" : "16:00:00",
-            "endTime" : "19:00:00"
+            "endTime" : "17:30:00"
         },
         {
             "name" : "tankCooler",
