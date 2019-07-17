@@ -53,8 +53,8 @@
             "name" : "fishFeeder",
             "port" : 18,
             "activeHigh" : false,
-            "startTime" : "05:00:00",
-            "endTime" : "05:01:30"
+            "startTime" : "17:00:00",
+            "endTime" : "17:01:30"
         },
         {
             "name" : "fishFeeder",
