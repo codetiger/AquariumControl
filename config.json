@@ -5,7 +5,7 @@
             "port" : 23,
             "activeHigh" : false,
             "startTime" : "07:45:00",
-            "endTime" : "10:45:00"
+            "endTime" : "09:00:00"
         },
         {
             "name" : "plantLight",
@@ -19,7 +19,7 @@
             "port" : 23,
             "activeHigh" : false,
             "startTime" : "15:45:00",
-            "endTime" : "18:45:00"
+            "endTime" : "17:00:00"
         },
         {
             "name" : "plantLight",
