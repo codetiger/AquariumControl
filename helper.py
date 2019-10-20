@@ -3,7 +3,7 @@ import platform
 from gpiozero.pins.mock import MockFactory
 from gpiozero import Device
 def checkSimulate():
-        if platform.system() == "Darwin":
+        if platform.system() == "Darwin" or platform.system() == "Windows":
                 Device.pin_factory = MockFactory()
 
 
@@ -15,12 +15,13 @@ def isTimeBetween(startTime, endTime):
 
 
 # Check internet connection
-import urllib2
+from urllib.request import urlopen
+from urllib.error import URLError
 def hasInternetConnection():
     try:
-        urllib2.urlopen('http://www.google.com', timeout=10)
+        urlopen('http://www.google.com', timeout=10)
         return True
-    except urllib2.URLError as err: 
+    except URLError as err: 
         return False
 
 # Restarts the current program
@@ -30,7 +31,7 @@ def restartProgram():
                 p = psutil.Process(os.getpid())
                 for handler in p.open_files() + p.connections():
                         os.close(handler.fd)
-        except Exception, e:
+        except Exception as e:
                 logging.error(e)
 
         python = sys.executable

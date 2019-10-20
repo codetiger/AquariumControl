@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.7
 import helper
 
 # Use Mock pins while running in Mac OS
@@ -26,7 +27,7 @@ while True:
                         controlStates[setting["port"]] = False
                 controlStates[setting["port"]] = controlStates[setting["port"]] or helper.isTimeBetween(setting["startTime"], setting["endTime"])
 
-        for port, value in controlStates.iteritems():
+        for port, value in controlStates.items():
                 control, name = controls[port]
                 if value:
                         print("Switching ON the control " + name)
