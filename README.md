@@ -26,7 +26,9 @@ After=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/Documents/AquariumControl/ExecStart=/usr/bin/python aquariumctl.py
+User=pi
+WorkingDirectory=/home/pi/Documents/AquariumControl/
+ExecStart=/usr/bin/python3 aquariumctl.py
 Restart=on-abort
 
 [Install]
