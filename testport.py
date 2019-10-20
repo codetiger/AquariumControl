@@ -3,8 +3,8 @@ import sys
 print(len(sys.argv))
 
 if len(sys.argv) > 2:
-    port = sys.argv[1]
-    state = sys.argv[2]
+    port = int(sys.argv[1])
+    state = int(sys.argv[2])
     print("Port : " + port)
 
     import gpiozero
