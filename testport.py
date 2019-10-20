@@ -1,5 +1,4 @@
 import sys
-
 print(len(sys.argv))
 
 if len(sys.argv) > 2:
@@ -18,3 +17,6 @@ if len(sys.argv) > 2:
         print("Switching off")
 else:
     print("python testport.py [port] [state]")
+
+import time
+time.sleep(5)
