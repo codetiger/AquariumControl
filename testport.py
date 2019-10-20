@@ -10,7 +10,7 @@ if len(sys.argv) > 2:
     control = gpiozero.DigitalOutputDevice(port, active_high=False, initial_value=False)
 
     if state:
-        control.on()
+        control.blink()
         print("Switching on")
     else:
         control.off()
