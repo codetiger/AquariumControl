@@ -5,7 +5,7 @@ print(len(sys.argv))
 if len(sys.argv) > 2:
     port = int(sys.argv[1])
     state = int(sys.argv[2])
-    print("Port : " + port)
+    print("Port : " + str(port))
 
     import gpiozero
     control = gpiozero.DigitalOutputDevice(port, active_high=False, initial_value=False)
