@@ -68,6 +68,20 @@
             "port" : 27,
             "activeHigh" : false,
             "startTime" : "07:00:00",
+            "endTime" : "08:00:00"
+        },
+        {
+            "name" : "tankLight",
+            "port" : 27,
+            "activeHigh" : false,
+            "startTime" : "10:00:00",
+            "endTime" : "16:00:00"
+        },
+        {
+            "name" : "tankLight",
+            "port" : 27,
+            "activeHigh" : false,
+            "startTime" : "18:00:00",
             "endTime" : "20:00:00"
         }
     ]
