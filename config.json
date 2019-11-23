@@ -5,28 +5,14 @@
             "port" : 23,
             "activeHigh" : false,
             "startTime" : "07:15:00",
-            "endTime" : "10:15:00"
+            "endTime" : "14:15:00"
         },
         {
             "name" : "plantLight",
             "port" : 17,
             "activeHigh" : false,
             "startTime" : "07:30:00",
-            "endTime" : "10:30:00"
-        },
-        {
-            "name" : "co2Flow",
-            "port" : 23,
-            "activeHigh" : false,
-            "startTime" : "15:15:00",
-            "endTime" : "18:15:00"
-        },
-        {
-            "name" : "plantLight",
-            "port" : 17,
-            "activeHigh" : false,
-            "startTime" : "15:30:00",
-            "endTime" : "18:30:00"
+            "endTime" : "14:30:00"
         },
         {
             "name" : "tankCooler",
@@ -67,22 +53,8 @@
             "name" : "tankLight",
             "port" : 27,
             "activeHigh" : false,
-            "startTime" : "07:00:00",
-            "endTime" : "08:00:00"
-        },
-        {
-            "name" : "tankLight",
-            "port" : 27,
-            "activeHigh" : false,
-            "startTime" : "10:00:00",
-            "endTime" : "16:00:00"
-        },
-        {
-            "name" : "tankLight",
-            "port" : 27,
-            "activeHigh" : false,
-            "startTime" : "18:00:00",
-            "endTime" : "20:00:00"
+            "startTime" : "12:00:00",
+            "endTime" : "12:01:00"
         }
     ]
 }
