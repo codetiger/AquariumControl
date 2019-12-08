@@ -64,7 +64,7 @@ import flask
 from flask import request, jsonify, abort, send_from_directory
 from flask_cors import CORS, cross_origin
 
-app = flask.Flask(__name__, static_folder='./frontend/build/')
+app = flask.Flask(__name__, static_folder='./frontend/webapp/')
 app.config["DEBUG"] = False
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -89,7 +89,7 @@ def update_task(port):
         controlStates[port]["status"] = status
         return jsonify({'done': True, 'obj':controlStates[port]})
 
-app.run()
+app.run(host='0.0.0.0', port=80, debug=False)
 
 # Stop timer
 updateTimer.stop()
