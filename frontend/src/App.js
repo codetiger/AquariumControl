@@ -10,7 +10,7 @@ export default class BasicExample extends Component {
   }
 
   fetchData() {
-    fetch('http://localhost:5000/api/controls')
+    fetch('http://192.168.1.127:5000/api/controls')
     .then(res => res.json())
     .then((data) => {
       this.setState({ controls: data })
@@ -30,7 +30,7 @@ export default class BasicExample extends Component {
 
     controls[port]["status"] = checked;
 
-    fetch('http://localhost:5000/api/controls/'+port, {
+    fetch('http://192.168.1.127:5000/api/controls/'+port, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',

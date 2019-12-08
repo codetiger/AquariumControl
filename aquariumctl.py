@@ -89,7 +89,7 @@ def update_task(port):
         controlStates[port]["status"] = status
         return jsonify({'done': True, 'obj':controlStates[port]})
 
-app.run(host='0.0.0.0', port=80, debug=False)
+app.run(host='0.0.0.0', port=5000, debug=False)
 
 # Stop timer
 updateTimer.stop()
