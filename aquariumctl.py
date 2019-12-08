@@ -57,8 +57,8 @@ def checkControls():
         print("\n")
 
 print("\nstarting...\n")
-updateTimer = RepeatedTimer(30, updateCurrentStates)
-controlTimer = RepeatedTimer(3, checkControls)
+updateTimer = RepeatedTimer(60, updateCurrentStates)
+controlTimer = RepeatedTimer(30, checkControls)
 
 import flask
 from flask import request, jsonify, abort, send_from_directory
