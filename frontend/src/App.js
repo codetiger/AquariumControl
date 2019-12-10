@@ -46,12 +46,11 @@ export default class BasicExample extends Component {
     this.fetchData();
   }
 
-  handleChange(checked, event, port) {
+  handleChange = port => event => {
     const controls = this.state.controls;
-    console.log(checked);
 
     if(port in controls)
-      controls[port]["status"] = checked;
+      controls[port]["status"] = event.target.checked;
 
     fetch('http://192.168.1.127:5000/api/controls/'+port, {
       method: 'PUT',
@@ -60,10 +59,10 @@ export default class BasicExample extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        status: checked,
+        status: event.target.checked,
       })
     })
-  }
+  };
 
   render() {
     const controls = this.state.controls;
@@ -92,7 +91,7 @@ export default class BasicExample extends Component {
                     <ListItemText primary={value['name']} secondary={value['name']} />
                     <Switch
                       id = {key}
-                      onChange={this.handleChange}
+                      onChange={this.handleChange(key)}
                       checked={value['status']}
                       color="primary"
                     />
