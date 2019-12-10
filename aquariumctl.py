@@ -61,22 +61,16 @@ updateTimer = RepeatedTimer(60, updateCurrentStates)
 controlTimer = RepeatedTimer(30, checkControls)
 
 import flask
-from flask import request, jsonify, abort, send_from_directory
-from flask_cors import CORS, cross_origin
+from flask import request, jsonify, abort
 
-app = flask.Flask(__name__, static_folder='./frontend/webapp/')
+app = flask.Flask(__name__, static_folder='frontend/webapp/')
 app.config["DEBUG"] = False
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
-
 
 @app.route('/api/controls', methods=['GET'])
-@cross_origin()
 def get_control_status():
         return jsonify(controlStates)
 
 @app.route('/api/controls/<int:port>', methods=['PUT'])
-@cross_origin()
 def update_task(port):
         status = request.json['status']
         if port not in controlStates:
