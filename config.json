@@ -1,56 +1,63 @@
 {
     "controls" : [
         {
-            "name" : "co2Flow",
+            "name" : "CO2 Flow",
             "port" : 23,
             "activeHigh" : false,
             "startTime" : "07:15:00",
             "endTime" : "14:15:00"
         },
         {
-            "name" : "plantLight",
+            "name" : "Plant Light",
             "port" : 17,
             "activeHigh" : false,
             "startTime" : "07:30:00",
             "endTime" : "14:30:00"
         },
         {
-            "name" : "tankCooler",
+            "name" : "Tank Cooler",
             "port" : 25,
             "activeHigh" : false,
             "startTime" : "00:00:00",
             "endTime" : "23:59:59"
         },
         {
-            "name" : "canisterFilter",
+            "name" : "Canister Filter",
             "port" : 4,
             "activeHigh" : false,
             "startTime" : "00:00:00",
             "endTime" : "23:59:59"
         },
         {
-            "name" : "tankFilter",
+            "name" : "Air Bubble",
             "port" : 24,
             "activeHigh" : false,
-            "startTime" : "00:00:00",
+            "startTime" : "14:30:00",
             "endTime" : "23:59:59"
         },
         {
-            "name" : "fishFeeder",
+            "name" : "Air Bubble",
+            "port" : 24,
+            "activeHigh" : false,
+            "startTime" : "00:00:00",
+            "endTime" : "07:15:00"
+        },
+        {
+            "name" : "Fish Feeder",
             "port" : 18,
             "activeHigh" : false,
             "startTime" : "17:00:00",
             "endTime" : "17:01:30"
         },
         {
-            "name" : "fishFeeder",
+            "name" : "Fish Feeder",
             "port" : 18,
             "activeHigh" : false,
             "startTime" : "07:00:00",
             "endTime" : "07:01:30"
         },
         {
-            "name" : "tankLight",
+            "name" : "Tank Light",
             "port" : 27,
             "activeHigh" : false,
             "startTime" : "12:00:00",
