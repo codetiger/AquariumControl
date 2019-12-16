@@ -53,8 +53,13 @@ def setControlStates():
         global controls
         for port, value in controlStates.items():
                 control = controls[port]
+                status = False
+                if value["status"] == forcesControlStates[port]:
+                        status = value["status"]
+                else:
+                        status = forcesControlStates[port]
 
-                if value["status"] or forcesControlStates[port]:
+                if status:
                         print("Switching ON the control " + value["name"])
                         control.on()
                 else:
