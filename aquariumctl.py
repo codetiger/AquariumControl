@@ -87,7 +87,12 @@ app.config["DEBUG"] = False
 def get_control_status():
         states = dict()
         for port, value in controlStates.items():
-                states[port] = {"name":value["name"], "status":(value["status"] or forcesControlStates[port])}
+                status = False
+                if value["status"] == forcesControlStates[port]:
+                        status = value["status"]
+                else:
+                        status = forcesControlStates[port]
+                states[port] = {"name":value["name"], "status":status}
 
         return jsonify(states)
 
