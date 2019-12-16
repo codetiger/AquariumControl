@@ -17,32 +17,44 @@ for setting in data["controls"]:
         if setting["port"] not in controls:
                 controls[setting["port"]] = gpiozero.DigitalOutputDevice(setting["port"], active_high=setting["activeHigh"], initial_value=False)
 
-# Main loop to keep the application alive. 
+
 import time 
 from repeatedtimer import RepeatedTimer
 
 controlStates = dict()
+forcesControlStates = dict()
 
 def updateCurrentStates():
-        global setting
+        global data
         global controlStates
         for port, obj in controlStates.items():
                 controlStates[port]["status"] = False
 
         for setting in data["controls"]:
-                if setting["port"] not in controlStates:
-                        controlStates[setting["port"]] = {"name":setting["name"], "status":False}
-                controlStates[setting["port"]]["name"] = setting["name"]
-                controlStates[setting["port"]]["status"] = controlStates[setting["port"]]["status"] or helper.isTimeBetween(setting["startTime"], setting["endTime"])
+                port = setting["port"]
+                if port not in controlStates:
+                        controlStates[port] = {"name":setting["name"], "status":False}
+                        
+                controlStates[port]["name"] = setting["name"]
+                controlStates[port]["status"] = controlStates[port]["status"] or helper.isTimeBetween(setting["startTime"], setting["endTime"])
+
+def resetForcedControlStates():
+        global controlStates
+        global forcesControlStates
+        for port, obj in controlStates.items():
+                forcesControlStates[port] = controlStates[port]["status"]
 
 updateCurrentStates()
+resetForcedControlStates()
 
 def setControlStates():
+        global forcesControlStates
         global controlStates
+        global controls
         for port, value in controlStates.items():
                 control = controls[port]
 
-                if value["status"]:
+                if value["status"] or forcesControlStates[port]:
                         print("Switching ON the control " + value["name"])
                         control.on()
                 else:
@@ -50,15 +62,15 @@ def setControlStates():
                         control.off()
 
 def checkControls():
-        global controlStates
         print("\nResetting Controls...")
         setControlStates()
-        # helper.checkUpdates()
+        helper.checkUpdates()
         print("\n")
 
 print("\nstarting...\n")
-updateTimer = RepeatedTimer(60, updateCurrentStates)
-controlTimer = RepeatedTimer(30, checkControls)
+updateTimer = RepeatedTimer(5, updateCurrentStates)
+controlTimer = RepeatedTimer(5, checkControls)
+resetTimer = RepeatedTimer(60, resetForcedControlStates)
 
 import flask
 from flask import request, jsonify, abort
@@ -68,23 +80,29 @@ app.config["DEBUG"] = False
 
 @app.route('/api/controls', methods=['GET'])
 def get_control_status():
-        return jsonify(controlStates)
+        states = dict()
+        for port, value in controlStates.items():
+                states[port] = {"name":value["name"], "status":(value["status"] or forcesControlStates[port])}
+
+        return jsonify(states)
 
 @app.route('/api/controls/<int:port>', methods=['PUT'])
 def update_task(port):
+        global forcesControlStates
         status = request.json['status']
-        if port not in controlStates:
+        if port not in forcesControlStates:
                 abort(404)
         if not request.json:
                 abort(400)
         if 'status' in request.json and type(request.json['status']) is not bool:
                 abort(401)
         
-        controlStates[port]["status"] = status
-        return jsonify({'done': True, 'obj':controlStates[port]})
+        forcesControlStates[port] = status
+        return jsonify({'done': True, 'obj':forcesControlStates[port]})
 
 app.run(host='0.0.0.0', port=5000, debug=False)
 
-# Stop timer
+# Stop timers
 updateTimer.stop()
 controlTimer.stop()
+resetTimer.stop()

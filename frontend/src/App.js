@@ -31,7 +31,8 @@ export default class BasicExample extends Component {
   }
 
   fetchData() {
-    fetch('http://192.168.1.127:5000/api/controls')
+    var domainName = window.location.protocol+'//'+window.location.hostname+(window.location.port ? ':'+window.location.port: '');
+    fetch(domainName + '/api/controls')
     .then(res => res.json())
     .then((data) => {
       this.setState({ controls: data })
@@ -52,7 +53,8 @@ export default class BasicExample extends Component {
     if(port in controls)
       controls[port]["status"] = event.target.checked;
 
-    fetch('http://192.168.1.127:5000/api/controls/'+port, {
+      var domainName = window.location.protocol+'//'+window.location.hostname+(window.location.port ? ':'+window.location.port: '');
+      fetch(domainName + '/api/controls/' + port, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
