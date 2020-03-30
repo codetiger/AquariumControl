@@ -69,6 +69,10 @@ def setControlStates():
 def checkControls():
         print("\nResetting Controls...")
         setControlStates()
+        print("\n")
+
+def codeUpdate():
+        print("\nUpdating code...")
         helper.checkUpdates()
         print("\n")
 
@@ -76,6 +80,7 @@ print("\nstarting...\n")
 updateTimer = RepeatedTimer(5, updateCurrentStates)
 controlTimer = RepeatedTimer(5, checkControls)
 resetTimer = RepeatedTimer(60, resetForcedControlStates)
+updateCodeTimer = RepeatedTimer(60 * 60 * 3, codeUpdate)
 
 import flask
 from flask import request, jsonify, abort
@@ -116,3 +121,4 @@ app.run(host='0.0.0.0', port=5000, debug=False)
 updateTimer.stop()
 controlTimer.stop()
 resetTimer.stop()
+updateCodeTimer.stop()
