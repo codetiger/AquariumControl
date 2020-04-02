@@ -53,8 +53,8 @@
             "name" : "Fish Feeder",
             "port" : 18,
             "activeHigh" : false,
-            "startTime" : "07:00:00",
-            "endTime" : "07:01:30"
+            "startTime" : "08:30:00",
+            "endTime" : "08:31:30"
         },
         {
             "name" : "Tank Light",
