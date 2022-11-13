@@ -11,7 +11,7 @@
     "minimist": "^1.2.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-switch": "^5.0.1",
     "yargs-parser": "^18.1.3"
   },
